@@ -1,5 +1,8 @@
 import mongoose, { Mongoose } from 'mongoose';
 
+// Suppress errors during build time when MONGODB_URI is not available
+const isBuildTime = !process.env.MONGODB_URI && process.env.NEXT_PHASE === 'phase-production-build';
+
 const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
 
 // Maintain connection state in global scope during development
@@ -21,6 +24,11 @@ if (!global.mongooseCache) {
 export async function connectToDatabase(): Promise<Mongoose> {
   // Check if MongoDB URI is defined at runtime
   if (!MONGODB_URI) {
+    if (isBuildTime) {
+      console.warn('[Build Time] Skipping MongoDB connection - will be available at runtime');
+      // Return a mock object during build to prevent errors
+      return mongoose as any;
+    }
     throw new Error('Please define the MONGODB_URI environment variable');
   }
 
