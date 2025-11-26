@@ -35,6 +35,57 @@
 - **Interactive Components**: Real-time updates and smooth transitions
 - **Accessibility**: Built with inclusive design principles
 
+## 📸 Screenshots & Features
+
+### 1. 🏠 Home Page & Code Upload
+The main landing page features an intuitive code upload interface with:
+- **Drag & Drop Upload Zone**: Easily upload code files or browse from your computer
+- **Language Selector**: Choose from 10+ supported programming languages
+- **Live Code Preview**: Built-in Monaco Editor with syntax highlighting
+- **Professional Branding**: Clean, modern interface powered by Gemini 2.5 Pro AI
+
+### 2. 📊 Performance & Metrics Dashboard
+Comprehensive analytics overview displaying:
+- **Total Reviews**: Count of all code reviews analyzed
+- **Average Score**: Code quality rating (0-10 scale) across all reviews
+- **Top Issue Type**: Most frequently occurring issue category
+- **This Week**: Number of reviews completed in the current week
+- **Issue Severity Distribution**: Visual pie chart showing Critical, Warning, and Suggestion breakdown
+- **Analysis Time Trend**: Graph tracking AI processing time across reviews
+- **Advanced metrics** for comprehensive analysis
+
+### 3. ⚙️ Code Complexity Tracker
+Deep dive into code metrics:
+- **Average Lines of Code**: Typical complexity of reviewed code
+- **Minimum/Maximum LOC**: Range of code complexity across all reviews
+- **Complexity Level Guide**: Five-tier scale (Very Low to Very High) with color coding
+- **Gradient visualizations** for easy at-a-glance assessment
+- Helps identify problematic code patterns
+
+### 4. 📈 Trends & Patterns Analysis
+Historical tracking and pattern recognition:
+- **Code Quality Trends**: Line chart showing quality scores over the last 90 days
+- **Top Recurring Issues**: Most common problems across all reviews with impact indicators
+- **Issue Breakdown by Category**: Distribution of issues across 6 categories (Best-Practice, Performance, Readability, Security, Modularity, etc.)
+- **Actionable insights** for continuous improvement
+- Color-coded severity indicators with detailed statistics
+
+### 5. 🎯 Advanced Insights
+Detailed comparative analysis:
+- **Language Performance Comparison**: Code quality scores across different programming languages
+- **Issue Category Deep Dive**: Detailed breakdown with tabs for each issue category
+- **Best Performing Language**: Highlighted best practices and high-score language
+- Severity mix analysis for each category
+- Top issues within each category with recommendations
+
+## 🌟 Smart Recommendations
+The platform provides AI-powered suggestions:
+- **Prioritized Recommendations**: Ranked by impact and difficulty
+- **Current vs. Potential Score**: Shows improvement potential
+- **Affected Reviews Count**: Number of reviews impacted by the issue
+- **Implementation Difficulty**: Easy/Medium/Hard ratings
+- **Quick Tips**: Actionable advice to improve code quality
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
