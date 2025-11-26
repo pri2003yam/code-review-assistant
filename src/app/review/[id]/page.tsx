@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
 import { connectToDatabase } from '@/lib/mongodb';
 import { ReportModel } from '@/models/Report';
 import { ReviewCard } from '@/components/review/ReviewCard';
