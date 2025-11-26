@@ -71,7 +71,6 @@ export interface Report {
   originalCode: string;
   review: ReviewResult;
   metadata: AnalysisMetadata;
-  userId: string;
   sessionId: string;
   deviceId: string;
   deviceName: string;
@@ -91,7 +90,6 @@ export interface ReviewRequest {
   code: string;
   language: ProgrammingLanguage;
   fileName: string;
-  userId?: string;
   sessionId?: string;
   deviceId?: string;
   deviceName?: string;

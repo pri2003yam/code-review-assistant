@@ -10,7 +10,6 @@ interface ReportDocument extends Document {
   originalCode: string;
   review: ReviewResult;
   metadata: AnalysisMetadata;
-  userId: string;
   sessionId: string;
   deviceId: string;
   deviceName: string;
@@ -101,11 +100,6 @@ const ReportSchema = new Schema<ReportDocument>(
       type: AnalysisMetadataSchema,
       required: true,
     },
-    userId: {
-      type: String,
-      required: true,
-      index: true,
-    },
     sessionId: {
       type: String,
       required: true,
@@ -128,10 +122,8 @@ const ReportSchema = new Schema<ReportDocument>(
 ReportSchema.index({ createdAt: -1 });
 ReportSchema.index({ language: 1 });
 ReportSchema.index({ 'review.overallScore': -1 });
-ReportSchema.index({ userId: 1 });
 ReportSchema.index({ sessionId: 1 });
 ReportSchema.index({ deviceId: 1 });
-ReportSchema.index({ userId: 1, createdAt: -1 });
 ReportSchema.index({ sessionId: 1, createdAt: -1 });
 ReportSchema.index({ deviceId: 1, createdAt: -1 });
 

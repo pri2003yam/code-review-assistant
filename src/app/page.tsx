@@ -11,10 +11,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useFileContext } from '@/context/FileContext';
 import { useReview } from '@/hooks/useReview';
 import { useSessionInfo } from '@/hooks/useSessionInfo';
-import { useUser } from '@/hooks/useUser';
-import { AuthModal } from '@/components/auth/AuthModal';
 import { ProgrammingLanguage } from '@/types';
-import { Zap, Home, Sparkles, Code2, CheckCircle, AlertCircle, LogOut } from 'lucide-react';
+import { Zap, Home, Sparkles, Code2, CheckCircle, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
@@ -47,16 +45,9 @@ export default function HomePage() {
   const { file, clearFile } = useFileContext();
   const { report, isLoading, error, submitReview, clearReview } = useReview();
   const { sessionId, deviceId, deviceName, isLoading: sessionLoading, updateActivity } = useSessionInfo();
-  const { user, logout } = useUser();
-  const [showAuthModal, setShowAuthModal] = useState(!user);
   const [selectedLanguage, setSelectedLanguage] = useState<ProgrammingLanguage>(
     ProgrammingLanguage.JAVASCRIPT
   );
-
-  // Show auth modal if not logged in
-  useEffect(() => {
-    setShowAuthModal(!user);
-  }, [user]);
   // Update selected language when file changes
   useEffect(() => {
     if (file?.language) {
@@ -65,11 +56,6 @@ export default function HomePage() {
   }, [file]);
 
   const handleAnalyze = async () => {
-    if (!user) {
-      toast.error('Please sign in first');
-      return;
-    }
-
     if (!file) {
       toast.error('Please upload a file first');
       return;
@@ -81,7 +67,6 @@ export default function HomePage() {
         code: file.content,
         language: selectedLanguage,
         fileName: file.name,
-        userId: user.userId,
         sessionId,
         deviceId,
         deviceName,
@@ -296,31 +281,6 @@ export default function HomePage() {
             </pre>
           </div>
         </div>
-
-        {/* Auth Modal */}
-        <AuthModal isOpen={showAuthModal && !user} onClose={() => setShowAuthModal(false)} />
-
-        {/* Logout Button */}
-        {user && (
-          <div className="fixed bottom-8 right-8 flex items-center gap-4 bg-slate-900 border border-slate-700 rounded-lg p-4">
-            <div>
-              <p className="text-sm text-slate-400">Logged in as</p>
-              <p className="font-semibold text-white">{user.email}</p>
-            </div>
-            <Button
-              onClick={() => {
-                logout();
-                clearFile();
-                clearReview();
-                toast.success('Logged out successfully!');
-              }}
-              className="bg-red-600 hover:bg-red-700 text-white gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   );
