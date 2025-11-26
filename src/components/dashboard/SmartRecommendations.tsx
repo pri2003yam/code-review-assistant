@@ -102,20 +102,20 @@ export function SmartRecommendations({ days = 90, sessionId }: SmartRecommendati
         <div className="space-y-6">
           {/* Score Improvement Preview */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-linear-to-br from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4">
-              <p className="text-xs text-slate-500 mb-1">Current Average</p>
-              <p className="text-3xl font-bold text-cyan-400">{currentScore}</p>
-              <p className="text-xs text-slate-500 mt-1">/10</p>
+            <div className="bg-linear-to-br from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
+              <p className="text-xs text-slate-300 font-semibold mb-1 uppercase tracking-wide">Current Average</p>
+              <p className="text-3xl font-bold text-cyan-300">{currentScore}</p>
+              <p className="text-xs text-slate-400 mt-1 font-semibold">/10</p>
             </div>
-            <div className="bg-linear-to-br from-green-900/20 to-green-800/20 rounded-lg border border-green-700/50 p-4">
-              <p className="text-xs text-slate-500 mb-1">Potential Score</p>
-              <p className="text-3xl font-bold text-green-400">{potentialScore}</p>
-              <p className="text-xs text-slate-500 mt-1">/10</p>
+            <div className="bg-linear-to-br from-green-900/40 to-green-800/40 rounded-lg border border-green-600/70 p-4 shadow-lg">
+              <p className="text-xs text-slate-200 font-semibold mb-1 uppercase tracking-wide">Potential Score</p>
+              <p className="text-3xl font-bold text-green-300">{potentialScore}</p>
+              <p className="text-xs text-slate-300 mt-1 font-semibold">/10</p>
             </div>
-            <div className="bg-linear-to-br from-yellow-900/20 to-yellow-800/20 rounded-lg border border-yellow-700/50 p-4">
-              <p className="text-xs text-slate-500 mb-1">Possible Improvement</p>
-              <p className="text-3xl font-bold text-yellow-400">+{improvement}</p>
-              <p className="text-xs text-slate-500 mt-1">points</p>
+            <div className="bg-linear-to-br from-yellow-900/40 to-yellow-800/40 rounded-lg border border-yellow-600/70 p-4 shadow-lg">
+              <p className="text-xs text-slate-200 font-semibold mb-1 uppercase tracking-wide">Possible Improvement</p>
+              <p className="text-3xl font-bold text-yellow-300">+{improvement}</p>
+              <p className="text-xs text-slate-300 mt-1 font-semibold">points</p>
             </div>
           </div>
 
@@ -156,32 +156,32 @@ export function SmartRecommendations({ days = 90, sessionId }: SmartRecommendati
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm text-slate-400 mb-2">{rec.description}</p>
+                      <p className="text-sm text-slate-200 mb-2 font-medium">{rec.description}</p>
 
                       {/* Key Stats */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-xs">
-                        <div className="bg-slate-800/50 rounded p-2">
-                          <p className="text-slate-500">Affected Reviews</p>
-                          <p className="text-slate-200 font-semibold">{rec.affectedReviews}</p>
+                        <div className="bg-slate-900/70 rounded p-2 border border-slate-700/50">
+                          <p className="text-slate-300 font-semibold">Affected Reviews</p>
+                          <p className="text-slate-100 font-bold">{rec.affectedReviews}</p>
                         </div>
-                        <div className="bg-slate-800/50 rounded p-2">
-                          <p className="text-slate-500">Issue Count</p>
-                          <p className="text-slate-200 font-semibold">{rec.issueCount}</p>
+                        <div className="bg-slate-900/70 rounded p-2 border border-slate-700/50">
+                          <p className="text-slate-300 font-semibold">Issue Count</p>
+                          <p className="text-slate-100 font-bold">{rec.issueCount}</p>
                         </div>
-                        <div className="bg-slate-800/50 rounded p-2">
-                          <p className="text-slate-500">Category</p>
-                          <p className="text-slate-200 font-semibold capitalize">{rec.category}</p>
+                        <div className="bg-slate-900/70 rounded p-2 border border-slate-700/50">
+                          <p className="text-slate-300 font-semibold">Category</p>
+                          <p className="text-slate-100 font-bold capitalize">{rec.category}</p>
                         </div>
-                        <div className="bg-slate-800/50 rounded p-2">
-                          <p className="text-slate-500">Score Gain</p>
-                          <p className="text-green-400 font-semibold">+{rec.potentialScoreIncrease}</p>
+                        <div className="bg-slate-900/70 rounded p-2 border border-slate-700/50">
+                          <p className="text-slate-300 font-semibold">Score Gain</p>
+                          <p className="text-green-300 font-bold">+{rec.potentialScoreIncrease}</p>
                         </div>
                       </div>
 
                       {/* Suggestion */}
-                      <div className="bg-slate-900/50 rounded p-3 border border-slate-700">
-                        <p className="text-xs text-slate-300 flex items-start gap-2">
-                          <Lightbulb className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
+                      <div className="bg-slate-900/80 rounded p-3 border border-slate-600 shadow-md">
+                        <p className="text-xs text-slate-100 flex items-start gap-2 font-medium">
+                          <Lightbulb className="w-4 h-4 text-yellow-300 shrink-0 mt-0.5" />
                           <span>{rec.suggestion}</span>
                         </p>
                       </div>
@@ -197,13 +197,13 @@ export function SmartRecommendations({ days = 90, sessionId }: SmartRecommendati
           )}
 
           {/* Summary */}
-          <div className="bg-slate-900/50 rounded-lg border border-slate-800 p-4">
-            <p className="text-xs text-slate-400 flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+          <div className="bg-linear-to-r from-slate-800/80 to-slate-900/80 rounded-lg border border-slate-600 p-4 shadow-md">
+            <p className="text-sm text-slate-100 flex items-start gap-2 font-medium">
+              <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
               <span>
                 By implementing these {recommendations.length} recommendations, your team can improve code quality from{' '}
-                <strong className="text-cyan-400">{currentScore}</strong> to{' '}
-                <strong className="text-green-400">{potentialScore}</strong> (potential improvement: <strong>+{improvement}</strong>)
+                <strong className="text-cyan-300">{currentScore}</strong> to{' '}
+                <strong className="text-green-300">{potentialScore}</strong> (potential improvement: <strong className="text-yellow-300">+{improvement}</strong>)
               </span>
             </p>
           </div>

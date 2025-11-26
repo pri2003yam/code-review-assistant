@@ -156,36 +156,36 @@ export function SeverityDistribution({ language, sessionId }: SeverityDistributi
 
         {/* Legend */}
         <div className="flex flex-col gap-4 flex-1">
-          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-red-600/10 to-red-500/5 rounded-xl border border-red-500/30 hover:border-red-500/60 transition-all hover:bg-red-600/15 cursor-pointer">
+          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-red-600/30 to-red-500/20 rounded-xl border border-red-500/60 hover:border-red-500/80 transition-all hover:bg-red-600/40 cursor-pointer shadow-md">
             <div className="flex items-center gap-2 flex-1">
-              <AlertCircle className="w-5 h-5 text-red-400 group-hover:text-red-300 transition-colors" />
-              <span className="text-sm font-semibold text-slate-300 group-hover:text-slate-100 transition-colors">Critical</span>
+              <AlertCircle className="w-6 h-6 text-red-300 group-hover:text-red-200 transition-colors" />
+              <span className="text-sm font-bold text-slate-100 group-hover:text-white transition-colors">Critical</span>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold text-red-400 group-hover:text-red-300">{data.critical}</div>
-              <div className="text-xs text-slate-500">{criticalPercent}%</div>
+              <div className="text-xl font-bold text-red-300 group-hover:text-red-200">{data.critical}</div>
+              <div className="text-xs text-slate-300 font-semibold">{criticalPercent}%</div>
             </div>
           </div>
 
-          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-yellow-600/10 to-yellow-500/5 rounded-xl border border-yellow-500/30 hover:border-yellow-500/60 transition-all hover:bg-yellow-600/15 cursor-pointer">
+          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-yellow-600/30 to-yellow-500/20 rounded-xl border border-yellow-500/60 hover:border-yellow-500/80 transition-all hover:bg-yellow-600/40 cursor-pointer shadow-md">
             <div className="flex items-center gap-2 flex-1">
-              <AlertTriangle className="w-5 h-5 text-yellow-400 group-hover:text-yellow-300 transition-colors" />
-              <span className="text-sm font-semibold text-slate-300 group-hover:text-slate-100 transition-colors">Warning</span>
+              <AlertTriangle className="w-6 h-6 text-yellow-300 group-hover:text-yellow-200 transition-colors" />
+              <span className="text-sm font-bold text-slate-100 group-hover:text-white transition-colors">Warning</span>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold text-yellow-400 group-hover:text-yellow-300">{data.warning}</div>
-              <div className="text-xs text-slate-500">{warningPercent}%</div>
+              <div className="text-xl font-bold text-yellow-300 group-hover:text-yellow-200">{data.warning}</div>
+              <div className="text-xs text-slate-300 font-semibold">{warningPercent}%</div>
             </div>
           </div>
 
-          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-blue-600/10 to-blue-500/5 rounded-xl border border-blue-500/30 hover:border-blue-500/60 transition-all hover:bg-blue-600/15 cursor-pointer">
+          <div className="group flex items-center gap-3 p-4 bg-linear-to-r from-blue-600/30 to-blue-500/20 rounded-xl border border-blue-500/60 hover:border-blue-500/80 transition-all hover:bg-blue-600/40 cursor-pointer shadow-md">
             <div className="flex items-center gap-2 flex-1">
-              <Lightbulb className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
-              <span className="text-sm font-semibold text-slate-300 group-hover:text-slate-100 transition-colors">Suggestion</span>
+              <Lightbulb className="w-6 h-6 text-blue-300 group-hover:text-blue-200 transition-colors" />
+              <span className="text-sm font-bold text-slate-100 group-hover:text-white transition-colors">Suggestion</span>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold text-blue-400 group-hover:text-blue-300">{data.suggestion}</div>
-              <div className="text-xs text-slate-500">{suggestionPercent}%</div>
+              <div className="text-xl font-bold text-blue-300 group-hover:text-blue-200">{data.suggestion}</div>
+              <div className="text-xs text-slate-300 font-semibold">{suggestionPercent}%</div>
             </div>
           </div>
         </div>
