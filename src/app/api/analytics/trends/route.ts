@@ -11,9 +11,15 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const language = searchParams.get('language');
     const days = parseInt(searchParams.get('days') || '90');
+    const sessionId = searchParams.get('sessionId');
 
     // Build filter
     const filter: Record<string, any> = {};
+    
+    // Filter by sessionId (required for device-based isolation)
+    if (sessionId) {
+      filter.sessionId = sessionId;
+    }
     
     if (language && language !== 'all') {
       filter.language = language;

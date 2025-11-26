@@ -14,9 +14,10 @@ interface ComplexityMetrics {
 
 interface CodeComplexityTrackerProps {
   language?: string;
+  sessionId?: string;
 }
 
-export function CodeComplexityTracker({ language }: CodeComplexityTrackerProps) {
+export function CodeComplexityTracker({ language, sessionId }: CodeComplexityTrackerProps) {
   const [metrics, setMetrics] = useState<ComplexityMetrics | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -26,6 +27,9 @@ export function CodeComplexityTracker({ language }: CodeComplexityTrackerProps) 
         const params = new URLSearchParams();
         const days = 90;
         params.set('days', days.toString());
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
         if (language && language !== 'all') {
           params.set('language', language);
         }

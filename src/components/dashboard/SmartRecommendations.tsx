@@ -20,6 +20,7 @@ interface Recommendation {
 
 interface SmartRecommendationsProps {
   days?: number;
+  sessionId?: string;
 }
 
 const impactColors = {
@@ -40,7 +41,7 @@ const difficultyIcons = {
   hard: '🔴',
 };
 
-export function SmartRecommendations({ days = 90 }: SmartRecommendationsProps) {
+export function SmartRecommendations({ days = 90, sessionId }: SmartRecommendationsProps) {
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentScore, setCurrentScore] = useState<number>(0);
@@ -50,7 +51,12 @@ export function SmartRecommendations({ days = 90 }: SmartRecommendationsProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/analytics/recommendations?days=${days}`);
+        const params = new URLSearchParams();
+        params.set('days', String(days));
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
+        const response = await fetch(`/api/analytics/recommendations?${params.toString()}`);
         const result = await response.json();
 
         if (result.recommendations) {
@@ -67,7 +73,7 @@ export function SmartRecommendations({ days = 90 }: SmartRecommendationsProps) {
     };
 
     fetchData();
-  }, [days || 90]);
+  }, [days || 90, sessionId]);
 
   if (loading) {
     return (

@@ -57,7 +57,7 @@ export function StatsOverview({ stats }: StatsOverviewProps) {
       {statsList.map((stat, idx) => (
         <div
           key={idx}
-          className={`group relative overflow-hidden rounded-2xl p-8 bg-gradient-to-br ${stat.gradient} border ${stat.borderColor} backdrop-blur-sm hover:border-opacity-100 transition-all duration-300 hover:shadow-xl hover:shadow-slate-900/50 hover:scale-105 transform`}
+          className={`group relative overflow-hidden rounded-2xl p-8 bg-linear-to-br ${stat.gradient} border ${stat.borderColor} backdrop-blur-sm hover:border-opacity-100 transition-all duration-300 hover:shadow-xl hover:shadow-slate-900/50 hover:scale-105 transform`}
         >
           {/* Animated background accent */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -75,7 +75,7 @@ export function StatsOverview({ stats }: StatsOverviewProps) {
           </div>
 
           {/* Bottom accent bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity" style={{
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r opacity-0 group-hover:opacity-100 transition-opacity" style={{
             backgroundImage: `linear-gradient(to right, var(--color-start), var(--color-end))`,
             '--color-start': stat.iconColor,
             '--color-end': 'transparent',

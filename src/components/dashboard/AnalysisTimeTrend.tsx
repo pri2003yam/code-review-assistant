@@ -19,9 +19,10 @@ interface AnalysisTimeMetrics {
 
 interface AnalysisTimeTrendProps {
   language?: string;
+  sessionId?: string;
 }
 
-export function AnalysisTimeTrend({ language }: AnalysisTimeTrendProps) {
+export function AnalysisTimeTrend({ language, sessionId }: AnalysisTimeTrendProps) {
   const [trends, setTrends] = useState<TrendPoint[]>([]);
   const [metrics, setMetrics] = useState<AnalysisTimeMetrics | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,9 @@ export function AnalysisTimeTrend({ language }: AnalysisTimeTrendProps) {
         const params = new URLSearchParams();
         const days = 90;
         params.set('days', days.toString());
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
         if (language && language !== 'all') {
           params.set('language', language);
         }

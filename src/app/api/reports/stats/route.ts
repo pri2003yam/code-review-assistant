@@ -14,9 +14,15 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search');
     const minScore = searchParams.get('minScore');
     const maxScore = searchParams.get('maxScore');
+    const sessionId = searchParams.get('sessionId');
 
     // Build filter - same as reports endpoint
     const filter: Record<string, any> = {};
+
+    // Filter by sessionId (required for device-based isolation)
+    if (sessionId) {
+      filter.sessionId = sessionId;
+    }
     
     if (language && language !== 'all') {
       filter.language = language;

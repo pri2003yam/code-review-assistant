@@ -20,6 +20,7 @@ interface CategoryData {
 
 interface CategoryDeepDiveProps {
   days?: number;
+  sessionId?: string;
 }
 
 const categoryColors: Record<string, { bg: string; border: string; icon: string }> = {
@@ -31,7 +32,7 @@ const categoryColors: Record<string, { bg: string; border: string; icon: string 
   'best-practice': { bg: 'bg-green-900/30', border: 'border-green-700/50', icon: '✅' },
 };
 
-export function CategoryDeepDive({ days = 90 }: CategoryDeepDiveProps) {
+export function CategoryDeepDive({ days = 90, sessionId }: CategoryDeepDiveProps) {
   const [categories, setCategories] = useState<CategoryData[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('');
@@ -39,7 +40,12 @@ export function CategoryDeepDive({ days = 90 }: CategoryDeepDiveProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/analytics/category-analysis?days=${days}`);
+        const params = new URLSearchParams();
+        params.set('days', String(days));
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
+        const response = await fetch(`/api/analytics/category-analysis?${params.toString()}`);
         const result = await response.json();
 
         if (result.categories && result.categories.length > 0) {

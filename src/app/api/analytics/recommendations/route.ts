@@ -10,11 +10,17 @@ export async function GET(request: NextRequest) {
 
     const searchParams = request.nextUrl.searchParams;
     const days = parseInt(searchParams.get('days') || '90');
+    const sessionId = searchParams.get('sessionId');
 
     // Filter by date range
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
-    const filter = { createdAt: { $gte: startDate } };
+    const filter: Record<string, any> = { createdAt: { $gte: startDate } };
+
+    // Filter by sessionId (required for device-based isolation)
+    if (sessionId) {
+      filter.sessionId = sessionId;
+    }
 
     // Get all reports matching the filter
     const allReports = await ReportModel.find(filter)

@@ -13,9 +13,10 @@ interface SeverityData {
 
 interface SeverityDistributionProps {
   language?: string;
+  sessionId?: string;
 }
 
-export function SeverityDistribution({ language }: SeverityDistributionProps) {
+export function SeverityDistribution({ language, sessionId }: SeverityDistributionProps) {
   const [data, setData] = useState<SeverityData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -25,6 +26,9 @@ export function SeverityDistribution({ language }: SeverityDistributionProps) {
         const params = new URLSearchParams();
         const days = 90;
         params.set('days', days.toString());
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
         if (language && language !== 'all') {
           params.set('language', language);
         }
@@ -43,7 +47,7 @@ export function SeverityDistribution({ language }: SeverityDistributionProps) {
     };
 
     fetchData();
-  }, [language || 'all']);
+  }, [language || 'all', sessionId]);
 
   if (loading) {
     return (

@@ -21,9 +21,10 @@ interface LanguageStats {
 
 interface LanguageComparisonProps {
   days?: number;
+  sessionId?: string;
 }
 
-export function LanguageComparison({ days = 90 }: LanguageComparisonProps) {
+export function LanguageComparison({ days = 90, sessionId }: LanguageComparisonProps) {
   const [languages, setLanguages] = useState<LanguageStats[]>([]);
   const [loading, setLoading] = useState(true);
   const [bestLanguage, setBestLanguage] = useState<string>('');
@@ -32,7 +33,12 @@ export function LanguageComparison({ days = 90 }: LanguageComparisonProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/analytics/language-comparison?days=${days}`);
+        const params = new URLSearchParams();
+        params.set('days', String(days));
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
+        const response = await fetch(`/api/analytics/language-comparison?${params.toString()}`);
         const result = await response.json();
 
         if (result.languages) {
@@ -96,7 +102,7 @@ export function LanguageComparison({ days = 90 }: LanguageComparisonProps) {
         <div className="space-y-6">
           {/* Best Language Badge */}
           {bestLanguage && (
-            <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-700/50 rounded-lg p-4">
+            <div className="bg-linear-to-r from-green-900/30 to-emerald-900/30 border border-green-700/50 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-medium text-slate-300">🏆 Best Performing Language</h4>
@@ -138,10 +144,10 @@ export function LanguageComparison({ days = 90 }: LanguageComparisonProps) {
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         lang.avgScore >= 7
-                          ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                          ? 'bg-linear-to-r from-green-500 to-emerald-500'
                           : lang.avgScore >= 5
-                          ? 'bg-gradient-to-r from-yellow-500 to-orange-500'
-                          : 'bg-gradient-to-r from-red-500 to-orange-500'
+                          ? 'bg-linear-to-r from-yellow-500 to-orange-500'
+                          : 'bg-linear-to-r from-red-500 to-orange-500'
                       }`}
                       style={{ width: `${scorePercent}%` }}
                     ></div>

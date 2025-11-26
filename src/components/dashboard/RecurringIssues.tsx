@@ -17,9 +17,10 @@ interface IssueCategory {
 
 interface RecurringIssuesProps {
   language?: string;
+  sessionId?: string;
 }
 
-export function RecurringIssues({ language = 'all' }: RecurringIssuesProps) {
+export function RecurringIssues({ language = 'all', sessionId }: RecurringIssuesProps) {
   const [issues, setIssues] = useState<RecurringIssue[]>([]);
   const [categories, setCategories] = useState<IssueCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,9 @@ export function RecurringIssues({ language = 'all' }: RecurringIssuesProps) {
       try {
         const params = new URLSearchParams();
         params.set('days', '90');
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
         if (language && language !== 'all') {
           params.set('language', language);
         }

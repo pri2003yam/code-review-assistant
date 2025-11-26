@@ -152,10 +152,10 @@ export function DashboardContent() {
             <h2 className="text-3xl font-bold text-slate-100">Performance & Metrics</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <SeverityDistribution />
-            <AnalysisTimeTrend />
+            <SeverityDistribution sessionId={sessionId} />
+            <AnalysisTimeTrend sessionId={sessionId} />
           </div>
-          <CodeComplexityTracker />
+          <CodeComplexityTracker sessionId={sessionId} />
         </div>
 
         {/* Trends & Patterns Section */}
@@ -165,8 +165,8 @@ export function DashboardContent() {
             <h2 className="text-3xl font-bold text-slate-100">Trends & Patterns</h2>
           </div>
           <div className="space-y-6">
-            <TrendsChart />
-            <RecurringIssues />
+            <TrendsChart sessionId={sessionId} />
+            <RecurringIssues sessionId={sessionId} />
           </div>
         </div>
 
@@ -177,10 +177,10 @@ export function DashboardContent() {
             <h2 className="text-3xl font-bold text-slate-100">Advanced Insights</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <LanguageComparison days={90} />
-            <CategoryDeepDive days={90} />
+            <LanguageComparison days={90} sessionId={sessionId} />
+            <CategoryDeepDive days={90} sessionId={sessionId} />
           </div>
-          <SmartRecommendations days={90} />
+          <SmartRecommendations days={90} sessionId={sessionId} />
         </div>
 
         {/* Recent Reviews Section */}

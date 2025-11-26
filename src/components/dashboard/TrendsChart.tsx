@@ -12,9 +12,10 @@ interface TrendDataPoint {
 
 interface TrendsChartProps {
   language?: string;
+  sessionId?: string;
 }
 
-export function TrendsChart({ language = 'all' }: TrendsChartProps) {
+export function TrendsChart({ language = 'all', sessionId }: TrendsChartProps) {
   const [data, setData] = useState<TrendDataPoint[]>([]);
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(90);
@@ -25,6 +26,9 @@ export function TrendsChart({ language = 'all' }: TrendsChartProps) {
       try {
         const params = new URLSearchParams();
         params.set('days', String(days));
+        if (sessionId) {
+          params.set('sessionId', sessionId);
+        }
         if (language && language !== 'all') {
           params.set('language', language);
         }
