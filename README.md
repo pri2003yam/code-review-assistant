@@ -38,6 +38,9 @@
 ## 📸 Screenshots & Features
 
 ### 1. 🏠 Home Page & Code Upload
+
+![Home Page](./public/screenshots/home-page.png)
+
 The main landing page features an intuitive code upload interface with:
 - **Drag & Drop Upload Zone**: Easily upload code files or browse from your computer
 - **Language Selector**: Choose from 10+ supported programming languages
@@ -45,6 +48,9 @@ The main landing page features an intuitive code upload interface with:
 - **Professional Branding**: Clean, modern interface powered by Gemini 2.5 Pro AI
 
 ### 2. 📊 Performance & Metrics Dashboard
+
+![Dashboard Overview](./public/screenshots/dashboard-overview.png)
+
 Comprehensive analytics overview displaying:
 - **Total Reviews**: Count of all code reviews analyzed
 - **Average Score**: Code quality rating (0-10 scale) across all reviews
@@ -55,6 +61,9 @@ Comprehensive analytics overview displaying:
 - **Advanced metrics** for comprehensive analysis
 
 ### 3. ⚙️ Code Complexity Tracker
+
+![Code Complexity](./public/screenshots/code-complexity.png)
+
 Deep dive into code metrics:
 - **Average Lines of Code**: Typical complexity of reviewed code
 - **Minimum/Maximum LOC**: Range of code complexity across all reviews
@@ -63,6 +72,9 @@ Deep dive into code metrics:
 - Helps identify problematic code patterns
 
 ### 4. 📈 Trends & Patterns Analysis
+
+![Trends & Patterns](./public/screenshots/trends-patterns.png)
+
 Historical tracking and pattern recognition:
 - **Code Quality Trends**: Line chart showing quality scores over the last 90 days
 - **Top Recurring Issues**: Most common problems across all reviews with impact indicators
@@ -71,6 +83,9 @@ Historical tracking and pattern recognition:
 - Color-coded severity indicators with detailed statistics
 
 ### 5. 🎯 Advanced Insights
+
+![Advanced Insights](./public/screenshots/advanced-insights.png)
+
 Detailed comparative analysis:
 - **Language Performance Comparison**: Code quality scores across different programming languages
 - **Issue Category Deep Dive**: Detailed breakdown with tabs for each issue category
