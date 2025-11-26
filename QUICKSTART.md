@@ -42,7 +42,7 @@ A complete full-stack Code Review Assistant application with:
 
 ```env
 MONGODB_URI=mongodb+srv://admin:YourSecurePassword123@cluster0.xxx.mongodb.net/code-review?retryWrites=true&w=majority
-ANTHROPIC_API_KEY=sk-ant-...
+GEMINI_API_KEY=AIzaSy...
 ```
 
 ## Run the App

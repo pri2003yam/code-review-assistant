@@ -44,7 +44,7 @@
 | **Editor** | Monaco Editor with syntax highlighting |
 | **Backend** | Next.js API Routes (serverless) |
 | **Database** | MongoDB Atlas + Mongoose ODM |
-| **AI Engine** | Anthropic Claude API (Claude 3.5 Sonnet) |
+| **AI Engine** | Google Gemini API (Multi-model support) |
 | **UI Library** | Radix UI + Lucide Icons |
 | **Export** | jsPDF + AutoTable for report generation |
 Create a `.env.local` file in the project root with:
@@ -53,8 +53,8 @@ Create a `.env.local` file in the project root with:
 # MongoDB Connection String (from MongoDB Atlas)
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/code-review?retryWrites=true&w=majority
 
-# Anthropic API Key (from console.anthropic.com)
-ANTHROPIC_API_KEY=sk-ant-...
+# Google Gemini API Key (from console.cloud.google.com)
+GEMINI_API_KEY=AIzaSy...
 
 # Optional: Application settings
 NEXT_PUBLIC_APP_NAME=CodeReview AI
@@ -70,12 +70,16 @@ NEXT_PUBLIC_APP_NAME=CodeReview AI
 6. Click "Connect" → "Connect your application" and copy the connection string
 7. Replace `username`, `password`, and `cluster` in your `.env.local`
 
-#### 4. Get Anthropic API Key
+#### 4. Get Google Gemini API Key
 
-1. Go to [Anthropic Console](https://console.anthropic.com)
-2. Sign up or log in
-3. Create an API key
-4. Copy and paste into `.env.local`
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key" or go to [Google Cloud Console](https://console.cloud.google.com/)
+4. Enable the "Generative Language API"
+5. Create an API key
+6. Copy and paste into `.env.local` as `GEMINI_API_KEY`
+
+**Note**: The Gemini API provides free tier usage for code review tasks with multiple model options (Gemini 2.5 Pro, Flash, Flash Lite, etc.)
 
 #### 5. Run Development Server
 
@@ -143,7 +147,7 @@ User Flow:
 1. 📤 Upload code file
 2. 👀 Preview with syntax highlighting
 3. 🚀 Click "Analyze Code"
-4. 🤖 Claude AI analyzes in real-time
+4. 🤖 Gemini AI analyzes in real-time
 5. 📊 View detailed report with issues
 6. 💾 Results saved to MongoDB
 7. 📥 Export as PDF or Markdown
@@ -153,7 +157,7 @@ User Flow:
 ### Backend Process
 
 1. **File Validation**: Check extension, size, content type
-2. **Claude Analysis**: Send code to Claude 3.5 Sonnet
+2. **Gemini Analysis**: Send code to Google Gemini API with intelligent model selection
 3. **Parsing**: Extract and categorize feedback
 4. **Storage**: Save to MongoDB with metadata
 5. **Response**: Return structured report to frontend
@@ -263,7 +267,7 @@ Environment variables required:
 | Issue | Solution |
 |-------|----------|
 | "MONGODB_URI not found" | Add to `.env.local`, restart dev server |
-| "Invalid API key" | Verify key from console.anthropic.com |
+| "Invalid GEMINI_API_KEY" | Verify key from console.cloud.google.com, ensure "Generative Language API" is enabled |
 | File upload fails | Check file size < 100KB, extension supported |
 | MongoDB connection error | Verify IP whitelisted in Atlas, check connection string |
 | Monaco editor not loading | Check browser console, verify npm dependencies installed |

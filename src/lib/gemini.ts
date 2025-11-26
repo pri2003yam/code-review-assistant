@@ -2,8 +2,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ReviewResult, IssueSeverity, IssueCategory } from '@/types';
 import { CODE_REVIEW_PROMPT } from './prompts';
 
-if (!process.env.ANTHROPIC_API_KEY) {
-  throw new Error('Please define the ANTHROPIC_API_KEY (Gemini API Key) environment variable');
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error('Please define the GEMINI_API_KEY environment variable');
 }
 
 // Singleton Gemini client
@@ -12,7 +12,7 @@ let availableModels: string[] | null = null;
 
 function getGeminiClient(): GoogleGenerativeAI {
   if (!geminiClient) {
-    geminiClient = new GoogleGenerativeAI(process.env.ANTHROPIC_API_KEY || '');
+    geminiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
   }
   return geminiClient;
 }
@@ -24,7 +24,7 @@ async function getAvailableModels(): Promise<string[]> {
   }
 
   try {
-    const apiKey = process.env.ANTHROPIC_API_KEY || '';
+    const apiKey = process.env.GEMINI_API_KEY || '';
     
     // Try to fetch available models via REST API
     const response = await fetch(
