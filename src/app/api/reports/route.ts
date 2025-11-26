@@ -20,10 +20,16 @@ export async function GET(request: NextRequest): Promise<NextResponse<ReportsLis
     const sortBy = searchParams.get('sortBy') || 'date'; // date, score, issues
     const minScore = searchParams.get('minScore');
     const maxScore = searchParams.get('maxScore');
+    const userId = searchParams.get('userId'); // Filter by user
     const sessionId = searchParams.get('sessionId'); // Filter by session
 
     // Build filter
     const filter: Record<string, any> = {};
+
+    // Filter by user ID (required for user-specific reports)
+    if (userId) {
+      filter.userId = userId;
+    }
 
     // Filter by session if provided
     if (sessionId && sessionId !== 'all') {
