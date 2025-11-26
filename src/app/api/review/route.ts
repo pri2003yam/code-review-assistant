@@ -65,7 +65,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ReviewRes
     return NextResponse.json({
       success: true,
       report: {
-        _id: typeof report._id === 'string' ? report._id : report._id?.toString?.() || report._id,
+        _id: (report._id?.toString?.() || report._id) as string,
         fileName: report.fileName,
         language: report.language,
         originalCode: report.originalCode,

@@ -1,6 +1,9 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { ReviewResult, AnalysisMetadata, ProgrammingLanguage } from '@/types';
 
+// Suppress errors during build time
+const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || typeof window === 'undefined' && !process.env.MONGODB_URI;
+
 interface ReportDocument extends Document {
   fileName: string;
   language: ProgrammingLanguage;
@@ -105,6 +108,19 @@ ReportSchema.index({ createdAt: -1 });
 ReportSchema.index({ language: 1 });
 ReportSchema.index({ 'review.overallScore': -1 });
 
-export const ReportModel = mongoose.models.Report || mongoose.model<ReportDocument>('Report', ReportSchema);
+// Try to get/create the model, but don't fail if MongoDB URI is not available
+let reportModel: mongoose.Model<ReportDocument> | null = null;
+
+try {
+  reportModel = mongoose.models.Report || mongoose.model<ReportDocument>('Report', ReportSchema);
+} catch (error) {
+  if (!isBuildTime) {
+    throw error;
+  }
+  // During build time, silently ignore the error
+  console.warn('[Build Time] Skipping model registration - will be available at runtime');
+}
+
+export const ReportModel = reportModel || (mongoose.models.Report as mongoose.Model<ReportDocument>);
 
 export default ReportModel;
