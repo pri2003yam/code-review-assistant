@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useFileContext } from '@/context/FileContext';
 import { useReview } from '@/hooks/useReview';
+import { useSessionInfo } from '@/hooks/useSessionInfo';
 import { ProgrammingLanguage } from '@/types';
 import { Zap, Home, Sparkles, Code2, CheckCircle, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -43,6 +44,7 @@ function fetchUser(id) {
 export default function HomePage() {
   const { file, clearFile } = useFileContext();
   const { report, isLoading, error, submitReview, clearReview } = useReview();
+  const { sessionId, deviceId, deviceName, isLoading: sessionLoading, updateActivity } = useSessionInfo();
   const [selectedLanguage, setSelectedLanguage] = useState<ProgrammingLanguage>(
     ProgrammingLanguage.JAVASCRIPT
   );
@@ -64,6 +66,7 @@ export default function HomePage() {
     console.log('File:', file);
     console.log('IsLoading:', isLoading);
     console.log('Selected Language:', selectedLanguage);
+    console.log('Session:', { sessionId, deviceId, deviceName });
     
     if (!file) {
       console.error('ERROR: No file uploaded');
@@ -75,13 +78,20 @@ export default function HomePage() {
       fileName: file.name,
       language: selectedLanguage,
       codeLength: file.content.length,
+      sessionId,
+      deviceId,
+      deviceName,
     });
     
     try {
+      updateActivity();
       await submitReview({
         code: file.content,
         language: selectedLanguage,
         fileName: file.name,
+        sessionId,
+        deviceId,
+        deviceName,
       });
       console.log('Review submitted successfully');
     } catch (error) {

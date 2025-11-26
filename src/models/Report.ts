@@ -10,6 +10,9 @@ interface ReportDocument extends Document {
   originalCode: string;
   review: ReviewResult;
   metadata: AnalysisMetadata;
+  sessionId: string;
+  deviceId: string;
+  deviceName: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -97,6 +100,18 @@ const ReportSchema = new Schema<ReportDocument>(
       type: AnalysisMetadataSchema,
       required: true,
     },
+    sessionId: {
+      type: String,
+      required: true,
+    },
+    deviceId: {
+      type: String,
+      required: true,
+    },
+    deviceName: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -107,6 +122,10 @@ const ReportSchema = new Schema<ReportDocument>(
 ReportSchema.index({ createdAt: -1 });
 ReportSchema.index({ language: 1 });
 ReportSchema.index({ 'review.overallScore': -1 });
+ReportSchema.index({ sessionId: 1 });
+ReportSchema.index({ deviceId: 1 });
+ReportSchema.index({ sessionId: 1, createdAt: -1 });
+ReportSchema.index({ deviceId: 1, createdAt: -1 });
 
 // Try to get/create the model, but don't fail if MongoDB URI is not available
 let reportModel: mongoose.Model<ReportDocument> | null = null;

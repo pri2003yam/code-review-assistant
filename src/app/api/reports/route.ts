@@ -20,9 +20,15 @@ export async function GET(request: NextRequest): Promise<NextResponse<ReportsLis
     const sortBy = searchParams.get('sortBy') || 'date'; // date, score, issues
     const minScore = searchParams.get('minScore');
     const maxScore = searchParams.get('maxScore');
+    const sessionId = searchParams.get('sessionId'); // Filter by session
 
     // Build filter
     const filter: Record<string, any> = {};
+
+    // Filter by session if provided
+    if (sessionId && sessionId !== 'all') {
+      filter.sessionId = sessionId;
+    }
     
     if (language && language !== 'all') {
       filter.language = language;

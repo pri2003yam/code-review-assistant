@@ -9,8 +9,12 @@ import { isSupportedFileType } from '@/lib/utils';
 
 export async function POST(request: NextRequest): Promise<NextResponse<ReviewResponse>> {
   try {
-    const body = (await request.json()) as ReviewRequest;
-    const { code, language, fileName } = body;
+    const body = (await request.json()) as ReviewRequest & {
+      sessionId?: string;
+      deviceId?: string;
+      deviceName?: string;
+    };
+    const { code, language, fileName, sessionId, deviceId, deviceName } = body;
 
     // Validate input
     if (!code || code.trim().length === 0) {
@@ -60,6 +64,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<ReviewRes
         analysisTime: 0,
         model: 'gemini-api', // Dynamic model determined by getAvailableModels()
       },
+      sessionId: sessionId || 'unknown',
+      deviceId: deviceId || 'unknown',
+      deviceName: deviceName || 'Unknown Device',
     });
 
     return NextResponse.json({
@@ -71,6 +78,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<ReviewRes
         originalCode: report.originalCode,
         review: report.review,
         metadata: report.metadata,
+        sessionId: report.sessionId,
+        deviceId: report.deviceId,
+        deviceName: report.deviceName,
         createdAt: report.createdAt,
         updatedAt: report.updatedAt,
       },
