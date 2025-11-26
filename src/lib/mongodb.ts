@@ -1,10 +1,6 @@
 import mongoose, { Mongoose } from 'mongoose';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable');
-}
-
-const MONGODB_URI: string = process.env.MONGODB_URI;
+const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
 
 // Maintain connection state in global scope during development
 interface CachedMongoose {
@@ -23,6 +19,11 @@ if (!global.mongooseCache) {
 }
 
 export async function connectToDatabase(): Promise<Mongoose> {
+  // Check if MongoDB URI is defined at runtime
+  if (!MONGODB_URI) {
+    throw new Error('Please define the MONGODB_URI environment variable');
+  }
+
   // If connection is already cached, return it
   if (cached.conn) {
     console.log('Using cached MongoDB connection');

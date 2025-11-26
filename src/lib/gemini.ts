@@ -2,15 +2,15 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ReviewResult, IssueSeverity, IssueCategory } from '@/types';
 import { CODE_REVIEW_PROMPT } from './prompts';
 
-if (!process.env.GEMINI_API_KEY) {
-  throw new Error('Please define the GEMINI_API_KEY environment variable');
-}
-
 // Singleton Gemini client
 let geminiClient: GoogleGenerativeAI | null = null;
 let availableModels: string[] | null = null;
 
 function getGeminiClient(): GoogleGenerativeAI {
+  if (!process.env.GEMINI_API_KEY) {
+    throw new Error('Please define the GEMINI_API_KEY environment variable');
+  }
+  
   if (!geminiClient) {
     geminiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
   }

@@ -15,6 +15,8 @@ import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import { Code2, Home } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Dashboard - CodeReview AI',
   description: 'View your code review history and statistics',

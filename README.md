@@ -1,6 +1,6 @@
 # 🚀 Code Review Assistant
 
-> An intelligent, AI-powered code review platform that analyzes your source code and provides actionable insights using Claude AI. Get professional code reviews in seconds.
+> An intelligent, AI-powered code review platform that analyzes your source code and provides actionable insights using Google Gemini API. Get professional code reviews in seconds.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.0-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19.2-blue?logo=react)
@@ -12,7 +12,7 @@
 
 ### 🎯 Core Functionality
 - **Multi-Language Support**: JavaScript, TypeScript, Python, Java, C++, C#, Go, Rust, and more
-- **AI-Powered Analysis**: Claude 3.5 Sonnet delivers comprehensive code reviews with contextual understanding
+- **AI-Powered Analysis**: Google Gemini API delivers comprehensive code reviews with contextual understanding
 - **Real-Time Feedback**: Instant analysis with detailed categorized issues
 - **Code Preview**: Built-in Monaco Editor with syntax highlighting and code formatting
 
